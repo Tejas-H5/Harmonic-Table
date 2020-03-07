@@ -1,7 +1,7 @@
 # Harmonic Table
 
-A virtual instrument created in unity that is based on the Harmonic Table
-note layout made for touch screen devices. 
+A virtual instrument made for touch screen devices created in unity that is based on the Harmonic Table
+note layout. 
 
 ![Screenshots of program](/ReadmeFiles/Screenshots.png)
 
