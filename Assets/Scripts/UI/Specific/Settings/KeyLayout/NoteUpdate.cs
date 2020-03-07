@@ -6,10 +6,10 @@ using UnityEngine.UI;
 public class NoteUpdate : MonoBehaviour , IInvalidateable{
     public UIUpDown majorUD;
     public UIBoolToggle majorNegate;
-    public Slider majorDistort;
+    public UIScrollbarInput majorDistort;
     public UIUpDown minorUD;
     public UIBoolToggle minorNegate;
-    public Slider minorDistort;
+    public UIScrollbarInput minorDistort;
 
     public Text fifth;
     public Text major;
@@ -17,11 +17,11 @@ public class NoteUpdate : MonoBehaviour , IInvalidateable{
     public Text half;
 
     public void Invalidate(){
-        float majorInterval = majorUD.val + majorDistort.value;
+        float majorInterval = majorUD.val + majorDistort.Value;
         if(majorNegate.val)
             majorInterval = -majorInterval;
 
-        float minorInterval = minorUD.val + minorDistort.value;
+        float minorInterval = minorUD.val + minorDistort.Value;
         if(minorNegate.val)
             minorInterval = -minorInterval;
             

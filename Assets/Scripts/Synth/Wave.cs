@@ -34,16 +34,7 @@ public class Wave : MonoBehaviour {
         get { return _type; }
         set { _type = value; }
     }
-
-    public void SetAmps(float f){
-        amps = f;
-    }
-    public void SetShift(float f){
-        shift = f;
-    }
-    public void SetPeriod(float f){
-        period = f;
-    }
+    
     public void SetType(float f){
         type = (WaveType)Theory.RoundFloat(f);
     }

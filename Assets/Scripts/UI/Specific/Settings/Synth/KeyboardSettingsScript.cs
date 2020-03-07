@@ -5,23 +5,22 @@ using UnityEngine.UI;
 
 public class KeyboardSettingsScript : MonoBehaviour
 {
+    public Instrument keyboard;
+
     public OscilatorSettings oscSettings;
     public Wave wave1;
     public Wave wave2;
 
     public WaveformScript display;
-    public Slider attackSlider;
-    public Slider decaySlider;
-    public Slider sustainSlider;
-    public Slider releaseSlider;
+    public UIScrollbarInput attackSlider;
+    public UIScrollbarInput decaySlider;
+    public UIScrollbarInput chordsizeSlider;
 
-    public Slider amp2;
-    public Slider shift2;
-    public Slider repeat2;
-    public UIImageCycle type2;
-
-    void Start(){
-        Invalidate();
+    void Awake(){
+        attackSlider.SetValuePassive(oscSettings.attack);
+        print(oscSettings.attack);
+        decaySlider.SetValuePassive(oscSettings.decay);
+        chordsizeSlider.SetValuePassive(keyboard.chordSize);
     }
 
     void OnEnable(){
@@ -30,8 +29,11 @@ public class KeyboardSettingsScript : MonoBehaviour
 
     public void Invalidate(){
         display.Lock();
-        attackSlider.value = oscSettings.attack;
-        decaySlider.value = oscSettings.decay;
+
+        oscSettings.SetAttack(attackSlider.Value);
+        oscSettings.SetDecay(decaySlider.Value);
+        keyboard.SetChordSize(chordsizeSlider.Value);
+
         //FOR LATER
         display.Unlock();
     }

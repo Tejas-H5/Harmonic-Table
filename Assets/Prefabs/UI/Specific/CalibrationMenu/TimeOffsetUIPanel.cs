@@ -4,17 +4,25 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class TimeOffsetUIPanel : MonoBehaviour {
-	[SerializeField] Slider slider;
+	[SerializeField] UIScrollbarInput slider;
 	[SerializeField] UIUpDown updown;
 
 	void OnEnable(){
 		updown.val = (int)BeatmapTiming.universalOffset;
-		slider.value = BeatmapTiming.universalOffset;
+		slider.Value = BeatmapTiming.universalOffset;
 	}
 
-	public void SetUniversalOffset(float f){
-		BeatmapTiming.universalOffset = f/100.0f;
-		updown.val = (int)f;
-		slider.value = (float)((int)f);
+    //These two used to be one function before Unity's UnityEvent<T> class dynamic T stopped working
+
+    public void SetUniversalOffsetSlider(){
+        float f = slider.Value;
+        updown.val = (int)f;
+        BeatmapTiming.universalOffset = f/100.0f;
+    }
+
+	public void SetUniversalOffsetUIUpDown(){
+		float f = updown.val;
+        slider.SetValuePassive(f);
+        BeatmapTiming.universalOffset = f/100.0f;
 	}
 }

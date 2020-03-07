@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class KeySettingsScript : MonoBehaviour {
     public KeyboardScript keyboard;
 
-    public Slider chordSizeSlider;
     public UIBoolToggle touchCircleToggle;
     public UIUpDown rowsUpDown;
     public UIUpDown colsUpDown;
@@ -22,8 +21,6 @@ public class KeySettingsScript : MonoBehaviour {
     public NoteUpdate diagram;
 
     void OnEnable(){
-        chordSizeSlider.value = keyboard.chordSize;
-
         touchCircleToggle.val = keyboard.touchCircles;
         rowsUpDown.val = keyboard.numRows;
         colsUpDown.val = keyboard.numCols;
