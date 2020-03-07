@@ -2249,12 +2249,12 @@ PrefabInstance:
     - target: {fileID: 1891293272682342240, guid: 7381ef0cf6cf21547946b044949052f7,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 12.199951
+      value: 0.000021935
       objectReference: {fileID: 0}
     - target: {fileID: 1891293272682342240, guid: 7381ef0cf6cf21547946b044949052f7,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 20.749989
+      value: 0.0000038147
       objectReference: {fileID: 0}
     - target: {fileID: 1891293272682342240, guid: 7381ef0cf6cf21547946b044949052f7,
         type: 3}
@@ -7884,7 +7884,7 @@ PrefabInstance:
     - target: {fileID: 1891293272682342240, guid: 7381ef0cf6cf21547946b044949052f7,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 20.75
+      value: 0.000013918
       objectReference: {fileID: 0}
     - target: {fileID: 1891293272682342240, guid: 7381ef0cf6cf21547946b044949052f7,
         type: 3}
@@ -15426,12 +15426,12 @@ PrefabInstance:
     - target: {fileID: 4814113980696727483, guid: ed4495358f7b3b946aa82510348c7e38,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -29.564941
+      value: -29.565
       objectReference: {fileID: 0}
     - target: {fileID: 4814113980696727483, guid: ed4495358f7b3b946aa82510348c7e38,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 20.74999
+      value: 0.000011235
       objectReference: {fileID: 0}
     - target: {fileID: 4814113980696727483, guid: ed4495358f7b3b946aa82510348c7e38,
         type: 3}
@@ -16181,9 +16181,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: The <color="yellow">root note</color> and the harmonic offsets control how
-    the rest of the keys on the keyboard are tuned. These two presets seem to be the
-    best, but feel free to experiment
+  m_Text: The <color="yellow">root note</color> at the bottom left and the note offsets
+    control how the rest of the keys on the keyboard are tuned. These two presets
+    seem to be the best, but feel free to experiment
 --- !u!222 &1613485311
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -21604,12 +21604,12 @@ PrefabInstance:
     - target: {fileID: 4814113980696727483, guid: ed4495358f7b3b946aa82510348c7e38,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -29.564941
+      value: -29.564987
       objectReference: {fileID: 0}
     - target: {fileID: 4814113980696727483, guid: ed4495358f7b3b946aa82510348c7e38,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 20.749989
+      value: 0.0000038146973
       objectReference: {fileID: 0}
     - target: {fileID: 4814113980696727483, guid: ed4495358f7b3b946aa82510348c7e38,
         type: 3}
