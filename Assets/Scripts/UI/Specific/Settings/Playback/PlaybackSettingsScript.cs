@@ -19,22 +19,22 @@ public class PlaybackSettingsScript : MonoBehaviour {
 	public UIBoolToggle transposeToggle;
 
 	void OnEnable(){
-		speedSlider.Value = (float)player.playSpeed * 10.0f;
-		atSlider.Value = (float)BeatmapTiming.foresight * 100f;
+		speedSlider.Value = (float)player.playSpeed;
+		atSlider.Value = (float)BeatmapTiming.foresight;
 		autoplayToggle.val = player.autoplay;
 	}
 
 
 	public void SetApproachTime(){
         float s = atSlider.Value;
-		BeatmapTiming.foresight = s / 100f;
-		atText.text = (s/100f).ToString() + " s";
+		BeatmapTiming.foresight = s;
+		atText.text = s.ToString() + " s";
 	}
 
 	//f from 5 to 30
 	public void SetPlaySpeed(){
         float f = speedSlider.Value;
-		player.SetSpeed(f/10.0f);
-		speedText.text = (f/10.0f).ToString("0.0") + "x";
+		player.SetSpeed(f);
+		speedText.text = f.ToString("0.0") + "x";
 	}
 }
