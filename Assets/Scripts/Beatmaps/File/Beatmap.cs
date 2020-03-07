@@ -105,8 +105,6 @@ public class Beatmap {
 			int majorMinor = 1;
 
 
-			bool YEET = false;
-
         	foreach(var midiEvent in track){
 				lastNoteDeltaTime += TicksToMicroseconds(midiEvent.DeltaTime);
 

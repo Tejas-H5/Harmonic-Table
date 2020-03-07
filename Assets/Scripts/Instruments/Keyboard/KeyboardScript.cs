@@ -39,10 +39,6 @@ public class KeyboardScript : Instrument {
 
 	//The oscilators that we have held down
 	List<KeyScript> _heldKeys;
-	int _activeOscilators = 0;
-
-	//used as a mutex for key read/writes
-	bool _active = false;
 
 	//used to determine the maximum number of rows and columns.
 	int _maxRowCols = 40;
@@ -431,13 +427,10 @@ public class KeyboardScript : Instrument {
 		}
 	}
 
-    int counter = 0;
 	void Update(){		
 		//pause menu on - off
 		if(Input.GetButtonDown("Cancel")){
 			_settingsUIPanel.SetActive(!_settingsUIPanel.activeSelf);
 		}
-
-        //print(_heldKeys.Count);
 	}
 }

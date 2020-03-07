@@ -76,7 +76,6 @@ public class Visualiser : MonoBehaviour {
 		}
 		*/
     }
-	int barIndex = 0;
 
 	public float response2 = 10;
 

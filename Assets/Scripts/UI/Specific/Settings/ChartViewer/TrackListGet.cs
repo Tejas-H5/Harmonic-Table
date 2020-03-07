@@ -123,7 +123,7 @@ public class TrackListGet : MonoBehaviour {
     			loadingCircle.gameObject.SetActive(true);
     		}
 
-    		loadingCircle.rotation *= Quaternion.AxisAngle(new Vector3(0,0,1), 5 * Time.deltaTime);
+    		loadingCircle.rotation *= Quaternion.AngleAxis(5 * Time.deltaTime, new Vector3(0, 0, 1));
 		} else {
 			if(loadingCircle.gameObject.activeSelf){
 				loadingCircle.gameObject.SetActive(false);
