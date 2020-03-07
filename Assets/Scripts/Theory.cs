@@ -93,6 +93,10 @@ public class Theory {
 		"Perfect octave",
 	};
 
+    public static string Interval(float interval){
+        return interval.ToString("0.0") + (interval > 0 ? " ↑" : " ↓");
+    }
+
 	public static string IntervalName(float interval){
 		int gap = RoundFloat(Mathf.Abs(interval));
 		if(gap >= _intervals.Length){

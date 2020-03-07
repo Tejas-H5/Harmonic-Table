@@ -28,9 +28,9 @@ public class NoteUpdate : MonoBehaviour , IInvalidateable{
         float fifthInterval = majorInterval - minorInterval;
         float halfInterval  = majorInterval + minorInterval;
 
-        fifth.text = Theory.IntervalName(fifthInterval) + "\n" + Theory.Distortion(fifthInterval);
-        major.text = Theory.IntervalName(majorInterval) + "\n" + Theory.Distortion(majorInterval);
-        minor.text = Theory.IntervalName(minorInterval) + "\n" + Theory.Distortion(minorInterval);
-        half.text = Theory.IntervalName(halfInterval) + "\n" + Theory.Distortion(halfInterval);
+        fifth.text = Theory.IntervalName(fifthInterval) + "(" + fifthInterval.ToString("+0;-0;") + ")";
+        major.text = Theory.IntervalName(majorInterval) + "(" + majorInterval.ToString("+0;-0;") + ")";
+        minor.text = Theory.IntervalName(minorInterval) + "(" + minorInterval.ToString("+0;-0;") + ")";
+        half.text = Theory.IntervalName(halfInterval) + "(" + halfInterval.ToString("+0;-0;") + ")";
     }
 }
