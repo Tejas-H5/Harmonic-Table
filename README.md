@@ -1,7 +1,7 @@
 # Harmonic Table
 
 A virtual instrument made for touch screen devices created in Unity3D that is based on the Harmonic Table
-note layout. 
+note layout. The APK can be downloaded [here](https://github.com/El-Tejaso/Harmonic-Table/releases/tag/V0.1.35).
 
 ![Screenshots of program](/ReadmeFiles/Screenshots.png)
 
