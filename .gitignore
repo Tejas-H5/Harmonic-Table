@@ -12,6 +12,7 @@
 
 #project specific ignores
 /HarmonicTableAndroidBuild/
+/HarmonicTableWindowsBuild/
 /MidiFiles/
 
 # Never ignore Asset meta data
