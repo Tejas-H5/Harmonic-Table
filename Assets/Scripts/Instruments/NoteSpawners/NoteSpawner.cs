@@ -56,10 +56,10 @@ public class NoteSpawner : MonoBehaviour {
         return Instantiate(holdNote, noteContainer).GetComponent<VisualNote>();
     }
 
-    bool _dontYeet = true;
+    bool _deleteAll = false;
     void Update(){
-        if(_dontYeet){
-            _dontYeet = false;
+        if(!_deleteAll){
+            _deleteAll = true;
         } else {
             ClearAllActive();
         }
@@ -74,7 +74,7 @@ public class NoteSpawner : MonoBehaviour {
     }
 
     public void UpdateNotes(double t){
-        _dontYeet = true;
+        _deleteAll = false;
         for(int i = 0; i < _activeNotes.Count; i++){
             var n = _activeNotes[i];
             n.Interpolate(t);

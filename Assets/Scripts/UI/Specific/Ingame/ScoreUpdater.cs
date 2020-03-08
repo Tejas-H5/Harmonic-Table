@@ -9,29 +9,29 @@ public class ScoreUpdater : MonoBehaviour {
     public Text okText;
     public Text missText;
 
-    int perfects;
-    int goods;
-    int oks;
-    int misss;
+    int _perfects;
+    int _goods;
+    int _oks;
+    int _miss;
 
     public ScoreTracker st;
 
     public void Update(){
-    	if(perfects!=st.getPerfect()){
+    	if(_perfects!=st.getPerfect()){
     		perfectText.text = st.getPerfect().ToString();
-    		perfects = st.getPerfect();
+    		_perfects = st.getPerfect();
     	}
-    	if(goods!=st.getGood()){
+    	if(_goods!=st.getGood()){
     		goodText.text = st.getGood().ToString();
-    		goods = st.getGood();
+    		_goods = st.getGood();
     	}
-    	if(oks!=st.getOk()){
+    	if(_oks!=st.getOk()){
     		okText.text = st.getOk().ToString();
-    		oks = st.getOk();
+    		_oks = st.getOk();
     	}
-    	if(misss!=st.getMiss()){
+    	if(_miss!=st.getMiss()){
     		missText.text = st.getMiss().ToString();
-    		misss = st.getMiss();
+    		_miss = st.getMiss();
     	}
     }
 }

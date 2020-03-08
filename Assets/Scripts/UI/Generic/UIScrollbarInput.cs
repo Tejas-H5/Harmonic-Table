@@ -11,12 +11,12 @@ public class UIScrollbarInput : MonoBehaviour ,
     
     public bool vertical;
     public bool flip;
-    float val;
+    float _val;
 
     public UnityEvent onValueChange;
 
     public float Value {
-        get=>val;
+        get=>_val;
         set{
             SetAmount((value-min)/(max-min));
         }
@@ -33,7 +33,7 @@ public class UIScrollbarInput : MonoBehaviour ,
     //needs to be a child of this transform
     public RectTransform fillRect;
 
-    Vector3[] corners = new Vector3[4];
+    Vector3[] _corners = new Vector3[4];
 
     //set to a positive value to restrict scrolling beyond a certain point (0-1 ofc)
     public float scrollUpperbound = -1;
@@ -50,7 +50,7 @@ public class UIScrollbarInput : MonoBehaviour ,
     void updateAppearanceNormalized(float amount){
         var rtf = (transform as RectTransform);
 
-        textReadout.text = val.ToString();
+        textReadout.text = _val.ToString();
 
         if(vertical){
             float y = amount*rtf.rect.height;
@@ -67,15 +67,15 @@ public class UIScrollbarInput : MonoBehaviour ,
     public void OnDrag(PointerEventData data)
     {
         var rtf = (transform as RectTransform);
-        rtf.GetWorldCorners(corners);
+        rtf.GetWorldCorners(_corners);
 
         float x0, x1;
         if(vertical){
-            x0 = corners[1].y;
-            x1 = corners[0].y;
+            x0 = _corners[1].y;
+            x1 = _corners[0].y;
         } else {
-            x0 = corners[1].x;
-            x1 = corners[2].x;
+            x0 = _corners[1].x;
+            x1 = _corners[2].x;
         }
 
         if(flip){
@@ -103,8 +103,8 @@ public class UIScrollbarInput : MonoBehaviour ,
     }
 
     public void SetValuePassive(float v){
-        val = v;
-        UpdateAppearance(val);
+        _val = v;
+        UpdateAppearance(_val);
     }
 
     public void SetAmount(float amount){

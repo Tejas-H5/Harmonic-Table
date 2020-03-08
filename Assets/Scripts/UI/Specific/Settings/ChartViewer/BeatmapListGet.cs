@@ -14,7 +14,7 @@ public class BeatmapListGet : MonoBehaviour {
 
     public Text errorOutput;
 
-    bool firstTime = true;
+    bool _firstTime = true;
     
     void OnEnable(){
         GetBeatmaps();
@@ -61,8 +61,8 @@ public class BeatmapListGet : MonoBehaviour {
     		rtf.anchoredPosition = new Vector2(0,-y);
     		lastHeight = rtf.rect.height;
 
-            if((i==0)&&(firstTime)){
-                firstTime = false;
+            if((i==0)&&(_firstTime)){
+                _firstTime = false;
                 trackListGetter.SetCurrentMap(preview.mapName);
             }
 

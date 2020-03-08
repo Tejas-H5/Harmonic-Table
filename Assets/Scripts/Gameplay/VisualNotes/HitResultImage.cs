@@ -8,8 +8,8 @@ public class HitResultImage : MonoBehaviour {
 	public Sprite[] sprites;
 	public float time = 0.2f;
 
-	float t = 0;
-	Coroutine anim;
+	float _t = 0;
+	Coroutine _anim;
 
 	void OnEnable(){
 		img.enabled = false;
@@ -17,13 +17,13 @@ public class HitResultImage : MonoBehaviour {
 
 	IEnumerator Animation(){
 		img.enabled = true;
-		t = 0;
+		_t = 0;
 		//print("yeet");
 		
-		while(t < time){
-			t += Time.deltaTime;
+		while(_t < time){
+			_t += Time.deltaTime;
 
-			float lf = t/time;
+			float lf = _t/time;
 
 			float a = 1.0f;
 
@@ -65,10 +65,10 @@ public class HitResultImage : MonoBehaviour {
 			}
 		}
 
-    	if(t > 0){
-    		StopCoroutine(anim);
+    	if(_t > 0){
+    		StopCoroutine(_anim);
     	}
 
-    	anim = StartCoroutine(Animation());
+    	_anim = StartCoroutine(Animation());
     }
 }

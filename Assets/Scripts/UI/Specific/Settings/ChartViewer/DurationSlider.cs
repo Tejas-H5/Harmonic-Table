@@ -4,10 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class DurationSlider : MonoBehaviour {
-    Slider durationSlider;    
+    Slider _durationSlider;    
 
     void Start(){
-        durationSlider = GetComponent<Slider>();
+        _durationSlider = GetComponent<Slider>();
     }
 
     void Update(){
@@ -16,6 +16,6 @@ public class DurationSlider : MonoBehaviour {
     	if(!player.isPlaying)
     		return;
 
-    	durationSlider.value = (float)(player.songTime/player.selectedDuration);
+    	_durationSlider.value = (float)(player.songTime/player.selectedDuration);
     }
 }

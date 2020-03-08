@@ -5,15 +5,14 @@ using UnityEngine.UI;
 
 public class DspFpsCounter : MonoBehaviour {
 	public SongPlayer player;
-	Text t;
+	Text _textReadout;
 
 	void Start(){
-		t = GetComponent<Text>();
+		_textReadout = GetComponent<Text>();
 	}
 
-	float f1 = 0;
-	float f2 = 0;
-	float f3 = 0;
+	float[] _frames = new float[3];
+    int _currentFrame = 0;
 
 	public Color best = new Color(0.0f, 1.0f, 1.0f);
 	public Color good = new Color(0.0f, 1.0f, 0);
@@ -21,21 +20,20 @@ public class DspFpsCounter : MonoBehaviour {
 	public Color bad = new Color(1.0f,0,0);
 
     void Update(){
-    	f1=f2;
-    	f2=f3;
+    	_frames[_currentFrame] = 1.0f/(float)player.dspDelta;
+        _currentFrame = (_currentFrame+1)%_frames.Length;
 
-    	f3 = 1.0f/(float)player.dspDelta;
-    	float calculated = (f1+f2+f3)/3.0f;
-    	t.text = calculated.ToString("0.00") + " DSPfps";
+    	float calculated = (_frames[0]+_frames[1]+_frames[2]) / 3.0f;
+    	_textReadout.text = calculated.ToString("0.00") + " DSPfps";
 
     	if(calculated > 60){
-    		t.color = best;
+    		_textReadout.color = best;
     	} else if(calculated > 20){
-    		t.color = Color.Lerp(good, best, (calculated-20)/20.0f);
+    		_textReadout.color = Color.Lerp(good, best, (calculated-20)/20.0f);
     	} else if (calculated > 20){
-    		t.color = Color.Lerp(ok, good, (calculated-20)/20.0f);
+    		_textReadout.color = Color.Lerp(ok, good, (calculated-20)/20.0f);
     	} else {
-    		t.color = Color.Lerp(bad, ok, calculated/20.0f);
+    		_textReadout.color = Color.Lerp(bad, ok, calculated/20.0f);
     	}
     }
 }

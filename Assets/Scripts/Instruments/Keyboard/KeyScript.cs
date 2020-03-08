@@ -89,7 +89,7 @@ public class KeyScript : MonoBehaviour, IPressable, IComparable<KeyScript>{
 	}
 
 	public void Release(){
-		//idk lol
+		//empty, but we need to implement IPressable
 	}
 
 	public float RecalcRadius(){

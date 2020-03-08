@@ -50,7 +50,7 @@ public class SongPlayer : MonoBehaviour {
     Beatmap _beatmap;
 
     //The list of held-down notes by this automated midi song player
-    List<Note> notes;
+    List<Note> _notes;
 
     int numPlaying = 0;
 
@@ -165,9 +165,9 @@ public class SongPlayer : MonoBehaviour {
 	}
 
     void Start(){
-    	notes = new List<Note>();
+    	_notes = new List<Note>();
     	//14 is arbitrary
-    	notes.Capacity = 14;
+    	_notes.Capacity = 14;
     }
 
     public void LoadBeatmap(string name){
@@ -216,7 +216,7 @@ public class SongPlayer : MonoBehaviour {
     	numPlaying = 0;
         _isPaused = false;
     	_beatmap.ResetPosition();
-    	notes.Clear();
+    	_notes.Clear();
     }
 
     public void PauseSong(){
@@ -296,7 +296,7 @@ public class SongPlayer : MonoBehaviour {
         }
 
     	//Add the frequency to the list of notes to hold down
-    	notes.Add(n);
+    	_notes.Add(n);
 
     	//This is for if frequency gets removed be Release() faster than Update is able to see it
         //NOT REDUNDANT
@@ -315,12 +315,12 @@ public class SongPlayer : MonoBehaviour {
 
 	//removes a note from the press-list
     private void Release(Note n) {
-    	int i = notes.IndexOf(n);
+    	int i = _notes.IndexOf(n);
         if(i<0)
             return;
 
-		notes[i] = notes[notes.Count - 1];
-		notes.RemoveAt(notes.Count - 1);
+		_notes[i] = _notes[_notes.Count - 1];
+		_notes.RemoveAt(_notes.Count - 1);
     }
 
     double _lastDspTime = 0;
@@ -346,8 +346,8 @@ public class SongPlayer : MonoBehaviour {
         _time += Time.deltaTime * _playSpeed;
 
         if(autoplay){
-        	for(int i = 0; i < notes.Count; i++){
-    	    	instrument.Press(notes[i]);
+        	for(int i = 0; i < _notes.Count; i++){
+    	    	instrument.Press(_notes[i]);
         	}
         }
 

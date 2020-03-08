@@ -15,20 +15,20 @@ public class Visualiser : MonoBehaviour {
 	public float response = 0.1f;
     public float radius = 50.0f;
 
-	List<RectTransform> bars;
-	List<float> barHeights;
+	List<RectTransform> _bars;
+	List<float> _barHeights;
 
 	void Start(){
-		bars = new List<RectTransform>();
-		bars.Capacity = numBars;
-		barHeights = new List<float>();
-		barHeights.Capacity = numBars;
+		_bars = new List<RectTransform>();
+		_bars.Capacity = numBars;
+		_barHeights = new List<float>();
+		_barHeights.Capacity = numBars;
 
 		float r = radius;//(container as RectTransform).rect.height/2;
 		for(int i = 0;i < numBars; i++){
 			var bar = (Instantiate(barPrefab, container) as GameObject).GetComponent<RectTransform>();
-			bars.Add(bar);
-			barHeights.Add(0);
+			_bars.Add(bar);
+			_barHeights.Add(0);
 
 			float angle = ((float)i/(float)numBars) * Mathf.PI * 2f;
 			bar.anchoredPosition = r * new Vector2(Mathf.Cos(angle),Mathf.Sin(angle));
@@ -41,22 +41,22 @@ public class Visualiser : MonoBehaviour {
 
     float angle=0;
 	void OnAudioFilterRead(float[] data, int channels) {
-		//float scaleFactor = (float)data.Length/(float)barHeights.Count;
-		float scaleFactor = ((float)data.Length+channels)/(float)barHeights.Count;
+		//float scaleFactor = (float)data.Length/(float)_barHeights.Count;
+		float scaleFactor = ((float)data.Length+channels)/(float)_barHeights.Count;
 
-		for(int i = 0; i < barHeights.Count; i++){
-			barHeights[i] = 0;
+		for(int i = 0; i < _barHeights.Count; i++){
+			_barHeights[i] = 0;
 		}
 
         float vel = 0;
 		for(int i = 0; i < data.Length; i+=channels){
             vel += Mathf.Abs(data[i]);
-			//map the sample's volume onto our array of barHeights
-			int index = (int)(Mathf.Clamp01(Mathf.Abs(data[i])) * ((barHeights.Count-1)/prongs));
-            index += (int)(barHeights.Count * angle);
+			//map the sample's volume onto our array of _barHeights
+			int index = (int)(Mathf.Clamp01(Mathf.Abs(data[i])) * ((_barHeights.Count-1)/prongs));
+            index += (int)(_barHeights.Count * angle);
 
 			for(int j = 0; j < prongs; j++){
-				barHeights[(index + j*((barHeights.Count-1)/prongs)) % barHeights.Count] += response * Mathf.Abs(data[i]);
+				_barHeights[(index + j*((_barHeights.Count-1)/prongs)) % _barHeights.Count] += response * Mathf.Abs(data[i]);
 			}
 		}
 
@@ -65,14 +65,14 @@ public class Visualiser : MonoBehaviour {
         angle %= Mathf.PI*2;
 		
 		/*
-		for(int i = 0; i < barHeights.Count; i++){
-			barHeights[i] += Mathf.Abs(data[(int)(i*scaleFactor)+channels]-data[(int)(i*scaleFactor)]);
+		for(int i = 0; i < _barHeights.Count; i++){
+			_barHeights[i] += Mathf.Abs(data[(int)(i*scaleFactor)+channels]-data[(int)(i*scaleFactor)]);
 		}
 
 
-		for(int i = 0; i < barHeights.Count; i++){
-			barHeights[i] *= decay;
-			barHeights[i] = Mathf.Clamp(barHeights[i], 0,3);
+		for(int i = 0; i < _barHeights.Count; i++){
+			_barHeights[i] *= decay;
+			_barHeights[i] = Mathf.Clamp(_barHeights[i], 0,3);
 		}
 		*/
     }
@@ -80,9 +80,9 @@ public class Visualiser : MonoBehaviour {
 	public float response2 = 10;
 
     void Update(){
-    	for(int i = 0; i < barHeights.Count; i++){
-    		//bars[i].sizeDelta = new Vector2(barWidth, baseHeight + sampleHeight * (Mathf.Abs(barHeights[i+1]) - Mathf.Abs(barHeights[i])));
-    		bars[i].sizeDelta = Vector2.Lerp(bars[i].sizeDelta, new Vector2(barWidth, baseHeight + sampleHeight * barHeights[i]), response2*Time.deltaTime);
+    	for(int i = 0; i < _barHeights.Count; i++){
+    		//_bars[i].sizeDelta = new Vector2(barWidth, baseHeight + sampleHeight * (Mathf.Abs(_barHeights[i+1]) - Mathf.Abs(_barHeights[i])));
+    		_bars[i].sizeDelta = Vector2.Lerp(_bars[i].sizeDelta, new Vector2(barWidth, baseHeight + sampleHeight * _barHeights[i]), response2*Time.deltaTime);
     	}
     }
 }

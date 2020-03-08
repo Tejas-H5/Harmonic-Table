@@ -5,8 +5,8 @@ using UnityEngine;
 public class FadeInScript : MonoBehaviour {
 	public float time = 1;
 
-	bool isAnimating = false;
-	Coroutine c;
+	bool _isAnimating = false;
+	Coroutine _c;
 
     public void OnEnable(){
         var g = GetComponent<CanvasGroup>();
@@ -15,10 +15,10 @@ public class FadeInScript : MonoBehaviour {
 
     public void Fade(bool t){
     	gameObject.SetActive(true);
-    	if(isAnimating)
-    		StopCoroutine(c);
+    	if(_isAnimating)
+    		StopCoroutine(_c);
 
-    	c = StartCoroutine(FadeCoroutine(t));
+    	_c = StartCoroutine(FadeCoroutine(t));
     }
 
     IEnumerator FadeCoroutine(bool b){

@@ -13,7 +13,7 @@ public class TrackListGet : MonoBehaviour {
 	public Transform loadingCircle;
 	public Text findingOutput;
 
-	bool loading = false;
+	bool _loading = false;
 
 	string _loadedSongName = "";
     
@@ -23,12 +23,12 @@ public class TrackListGet : MonoBehaviour {
         SongPlayer player = SongPlayer.instance;
 
 		if(name!=_loadedSongName){
-			loading = true;
+			_loading = true;
 			findingOutput.text = "Loading beatmap...";
 			await Task.Run(() => player.LoadBeatmap(name));
 			_loadedSongName = name;
 
-			loading = false;
+			_loading = false;
             tracklistChanged.Invoke();
 		}
 
@@ -55,7 +55,7 @@ public class TrackListGet : MonoBehaviour {
     public void ToggleAll(){
         SongPlayer player = SongPlayer.instance;
 
-    	if(loading)
+    	if(_loading)
     		return;
     	bool b = !panels[0].GetComponent<TrackPreviewPanel>().isEnabled;
     	for(int i = 0; i < player.loadedBeatmap.numTracks; i++){
@@ -104,21 +104,21 @@ public class TrackListGet : MonoBehaviour {
 
         player.SetPlaying(i,v);
 
-        if(!triggered){
+        if(!_triggered){
             StartCoroutine(InvokeEvent());
         }
     }
 
-    bool triggered = false;
+    bool _triggered = false;
     IEnumerator InvokeEvent(){
-        triggered = true;
+        _triggered = true;
         yield return new WaitForEndOfFrame();
         tracklistChanged.Invoke();
-        triggered = false;        
+        _triggered = false;        
     }
 
     void Update(){
-    	if(loading){
+    	if(_loading){
     		if(!loadingCircle.gameObject.activeSelf){
     			loadingCircle.gameObject.SetActive(true);
     		}

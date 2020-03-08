@@ -12,8 +12,8 @@ public class NoteHistogram : MonoBehaviour {
 
 	public GameObject histBar;
 
-	List<GameObject> bars = new List<GameObject>();
-    List<int> hist = new List<int>();
+	List<GameObject> _bars = new List<GameObject>();
+    List<int> _hist = new List<int>();
 
     public void UpdateHistogram(){
         SongPlayer player = SongPlayer.instance;
@@ -44,8 +44,8 @@ public class NoteHistogram : MonoBehaviour {
 
         if(lowNote==-1){
             //there were no enabled tracks.
-            for(int i = 0; i < bars.Count; i++) {
-                bars[i].SetActive(false);
+            for(int i = 0; i < _bars.Count; i++) {
+                _bars[i].SetActive(false);
             }
             lowNoteText.text = "here you'll see";
             hiNoteText.text = "the keys you'll need";
@@ -61,17 +61,17 @@ public class NoteHistogram : MonoBehaviour {
     	lowNoteText.text = Theory.NoteToString(low);
     	hiNoteText.text = Theory.NoteToString(high);
 
-        //the real number of bars needed
+        //the real number of _bars needed
         int n = high-low+1;
 
-        for(int i = hist.Count; i < n; i++){
+        for(int i = _hist.Count; i < n; i++){
             //add more ints to our list if we don't have enough
            // print("ye boi");
-            hist.Add(0);
+            _hist.Add(0);
         }
 
         for(int i = 0; i < n; i++){
-            hist[i] = 0;
+            _hist[i] = 0;
         }
 
 		for(int i = 0; i < bm.numTracks; i++){
@@ -81,14 +81,14 @@ public class NoteHistogram : MonoBehaviour {
     		var t = bm.GetTrack(i);
     		for(int j = 0; j < t.notes.Count; j++) {
     			int note = (int)(Theory.HertzToNote(t.notes[j].frequency));
-    			hist[note-low]++;
+    			_hist[note-low]++;
     		}
     	}
 
     	int maxBar = 0;
     	for(int i = 0; i < n; i++){
-    		if(hist[i]>maxBar)
-    			maxBar = hist[i];
+    		if(_hist[i]>maxBar)
+    			maxBar = _hist[i];
     	}
 
         maxbarText.text = maxBar.ToString();
@@ -98,18 +98,18 @@ public class NoteHistogram : MonoBehaviour {
 
     	
     	for(int i = 0; i < n; i++){
-    		if(bars.Count <= i){
+    		if(_bars.Count <= i){
     			var g = Instantiate(histBar, area) as GameObject;
-    			bars.Add(g);
+    			_bars.Add(g);
     		}
-            bars[i].SetActive(true);
-    		var barRtf = bars[i].GetComponent<RectTransform>();
+            _bars[i].SetActive(true);
+    		var barRtf = _bars[i].GetComponent<RectTransform>();
     		barRtf.anchoredPosition = new Vector2(w*(float)i,0);
-    		barRtf.sizeDelta = new Vector2(w, h0 * (float)hist[i]);
+    		barRtf.sizeDelta = new Vector2(w, h0 * (float)_hist[i]);
     	}
 
-    	for(int i = n; i < bars.Count; i++) {
-    		bars[i].SetActive(false);
+    	for(int i = n; i < _bars.Count; i++) {
+    		_bars[i].SetActive(false);
     	}
     }
 }

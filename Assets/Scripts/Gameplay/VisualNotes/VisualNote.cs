@@ -60,19 +60,19 @@ public abstract class VisualNote : MonoBehaviour {
 		_rtf = GetComponent<RectTransform>();
 	}
 
-	bool finishedPress = false;
+	bool _finishedPress = false;
 
 	protected virtual void Hold(){
-		if((_holdStart < -1)||finishedPress){
+		if((_holdStart < -1)||_finishedPress){
 			_holdStart = _lerpTime;
-			finishedPress = false;
+			_finishedPress = false;
 		}
 		_holdEnd = _lerpTime;
 	}
 
 	//I have to call it something other than Release
 	protected virtual void Unhold(){
-		finishedPress = true;
+		_finishedPress = true;
 	}
 
 	protected virtual void ResetNote(){
@@ -84,7 +84,7 @@ public abstract class VisualNote : MonoBehaviour {
         _lerpTime = 0;
         _holdStart = -2;
         _holdEnd = -2;
-        finishedPress = false;
+        _finishedPress = false;
 	}
 
 	//lf goes from positive to zero

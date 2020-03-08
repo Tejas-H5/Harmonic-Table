@@ -16,10 +16,10 @@ public class ScoreTracker : MonoBehaviour {
 		scoreDisplay.gameObject.SetActive(false);
 	}
 
-	int perfect = 0;
-	int good = 0;
-	int ok = 0;
-	int miss = 0;
+	int _perfect = 0;
+	int _good = 0;
+	int _ok = 0;
+	int _miss = 0;
 
 	public ScoreUpdater scoreDisplay;
 
@@ -36,10 +36,10 @@ public class ScoreTracker : MonoBehaviour {
 	}
 
 	public void ResetCounts(){
-		perfect = 0;
-		good = 0;
-		ok = 0;
-		miss = 0;
+		_perfect = 0;
+		_good = 0;
+		_ok = 0;
+		_miss = 0;
 	}
 
 	public void Increment(TimingResult t){
@@ -64,31 +64,31 @@ public class ScoreTracker : MonoBehaviour {
 	}
 
 	void IncrementPerfect(){
-		perfect++;
+		_perfect++;
 	}
 
 	void IncrementGood(){
-		good++;
+		_good++;
 	}
 
 	void IncrementOk(){
-		ok++;
+		_ok++;
 	}
 
 	void IncrementMiss(){
-		miss++;
+		_miss++;
 	}
 
 	public int getPerfect(){
-		return perfect; 
+		return _perfect; 
 	}
 	public int getGood(){
-		return good; 
+		return _good; 
 	}
 	public int getOk(){
-		return ok; 
+		return _ok; 
 	}
 	public int getMiss(){
-		return miss; 
+		return _miss; 
 	}
 }

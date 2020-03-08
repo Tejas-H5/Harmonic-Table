@@ -35,7 +35,7 @@ public class MetronomeScript : MonoBehaviour {
     private int accent;
 
     public VisualNote visNote;
-    Note boundNote;
+    Note _boundNote;
 
     public Text holdTime;
     public Text holdStart;
@@ -44,8 +44,8 @@ public class MetronomeScript : MonoBehaviour {
     public Text holdScore;
 
     void Start(){
-    	boundNote = new Note();
-        visNote.Bind(boundNote);
+    	_boundNote = new Note();
+        visNote.Bind(_boundNote);
     }
 
     void OnEnable() {
@@ -85,8 +85,8 @@ public class MetronomeScript : MonoBehaviour {
 
                 if(accent == signatureHi-1){
                     visNote.ResetTiming();
-                	boundNote.absoluteTime = (nextTick+samplesPerTick)/sampleRate;
-                    boundNote.duration = 0.35f*(float)(samplesPerTick/sampleRate);
+                	_boundNote.absoluteTime = (nextTick+samplesPerTick)/sampleRate;
+                    _boundNote.duration = 0.35f*(float)(samplesPerTick/sampleRate);
                 	amp *= 0.5f;
                 }
 
@@ -103,13 +103,13 @@ public class MetronomeScript : MonoBehaviour {
         }
     }
 
-    int counter = 0;
+    int _counter = 0;
     void Update(){
     	visNote.Interpolate(AudioSettings.dspTime);
 
-        counter++;
-        if(counter==5){
-            counter = 0;
+        _counter++;
+        if(_counter==5){
+            _counter = 0;
             holdTime.text = (visNote.holdEnd - visNote.holdStart).ToString();
             holdStart.text = (visNote.holdStartNorm).ToString();
             holdEnd.text = (visNote.holdEndNorm).ToString();

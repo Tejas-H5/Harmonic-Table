@@ -3,18 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//A testing script used outside the game. Could be removed
 public class BeatmapViewer : MonoBehaviour {
     public SongPlayer player;
     public GameObject noteImagePrefab;
     public float noteScale = 100;
 
-    float playbackTime = 0.0f;
+    float _playbackTime = 0.0f;
 
     public void SetTime(float t){
-    	playbackTime = t * (float)player.loadedBeatmap.duration;
+    	_playbackTime = t * (float)player.loadedBeatmap.duration;
     	var rtf = (RectTransform)transform;
     	Vector2 pos = rtf.anchoredPosition;
-    	rtf.anchoredPosition = new Vector2(pos.x,-playbackTime * noteScale);
+    	rtf.anchoredPosition = new Vector2(pos.x,-_playbackTime * noteScale);
     }
 
     //x between 0 and 1
